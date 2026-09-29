@@ -1,0 +1,805 @@
+:root{
+  --bg:#050506;
+  --bg-soft:#09090b;
+  --ink:#f3f2ef;
+  --dim:#999aa1;
+  --faint:#55565d;
+  --line:rgba(255,255,255,.09);
+  --strong:rgba(255,255,255,.18);
+
+  --display:'Space Grotesk','Inter',sans-serif;
+  --body:'Inter',sans-serif;
+
+  --gutter:clamp(20px,6vw,72px);
+  --container:1180px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+section{
+  position:relative;
+  padding:clamp(90px,12vw,160px) var(--gutter);
+}
+
+.wrap{
+  max-width:var(--container);
+  margin:auto;
+}
+
+h1,h2,h3{
+  font-family:var(--display);
+  font-weight:500;
+  line-height:1.05;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================================================
+   2. NAV
+========================================================= */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:74px;
+
+  z-index:100;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 var(--gutter);
+
+  background:linear-gradient(
+    to bottom,
+    rgba(5,5,6,.92),
+    rgba(5,5,6,.55),
+    transparent
+  );
+
+  backdrop-filter:blur(6px);
+}
+
+.logo{
+  font-family:var(--display);
+  font-size:19px;
+  font-weight:600;
+  letter-spacing:2px;
+}
+
+.nav-links{
+  display:flex;
+  gap:34px;
+  color:var(--dim);
+  font-size:13px;
+}
+
+.nav-links a{
+  transition:.2s;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-cta{
+  padding:9px 17px;
+  border:1px solid var(--strong);
+  border-radius:100px;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+@media(max-width:720px){
+
+  header{
+    height:66px;
+    padding:0 20px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-cta{
+    padding:8px 13px;
+    font-size:11px;
+  }
+
+}
+
+
+/* =========================================================
+   3. HERO
+========================================================= */
+
+.hero{
+  min-height:100svh;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  align-items:center;
+
+  gap:50px;
+
+  padding-top:130px;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+}
+
+.eyebrow{
+  color:var(--faint);
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-size:clamp(48px,7vw,86px);
+  letter-spacing:-4px;
+  max-width:680px;
+}
+
+.hero p{
+  margin-top:25px;
+  max-width:520px;
+  color:var(--dim);
+  font-size:16px;
+  line-height:1.7;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  margin-top:35px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:45px;
+
+  padding:0 21px;
+
+  border-radius:8px;
+
+  border:1px solid var(--strong);
+
+  font-size:13px;
+
+  transition:.25s;
+}
+
+.btn.primary{
+  background:var(--ink);
+  color:#050506;
+}
+
+.btn.ghost{
+  color:var(--dim);
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO ORB
+========================================================= */
+
+.hero-orb{
+  position:relative;
+  height:500px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#orbCanvas{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+
+@media(max-width:900px){
+
+  .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+
+    padding-top:110px;
+    padding-bottom:80px;
+
+    gap:10px;
+  }
+
+  /*
+    No mobile a esfera fica menor
+    e vem DEPOIS do texto.
+  */
+
+  .hero-copy{
+    order:1;
+  }
+
+  .hero-orb{
+    order:2;
+
+    height:250px;
+
+    margin-top:15px;
+  }
+
+  .hero h1{
+    max-width:600px;
+  }
+
+}
+
+
+@media(max-width:520px){
+
+  .hero{
+    padding-top:105px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom:65px;
+  }
+
+  .eyebrow{
+    font-size:10px;
+    margin-bottom:16px;
+  }
+
+  .hero h1{
+    font-size:47px;
+    letter-spacing:-3px;
+    line-height:.98;
+  }
+
+  .hero p{
+    font-size:14px;
+    line-height:1.65;
+    margin-top:19px;
+  }
+
+  .hero-actions{
+    margin-top:26px;
+    width:100%;
+  }
+
+  .hero-actions .btn{
+    flex:1;
+    padding:0 12px;
+    font-size:12px;
+  }
+
+  .hero-orb{
+    height:210px;
+    margin-top:5px;
+  }
+
+}
+
+
+/* =========================================================
+   4. MANIFESTO
+========================================================= */
+
+.manifesto{
+  background:var(--bg-soft);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.manifesto .wrap{
+  max-width:850px;
+}
+
+.manifesto h2{
+  font-size:clamp(34px,5vw,56px);
+  letter-spacing:-2px;
+}
+
+.manifesto h2 span{
+  color:var(--faint);
+}
+
+@media(max-width:520px){
+
+  .manifesto{
+    padding-top:80px;
+    padding-bottom:80px;
+  }
+
+  .manifesto h2{
+    font-size:34px;
+    line-height:1.08;
+  }
+
+}
+
+
+/* =========================================================
+   5. PORTFÓLIO
+========================================================= */
+
+.portfolio-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:25px;
+
+  margin-bottom:50px;
+}
+
+.portfolio-head h2{
+  font-size:clamp(35px,5vw,52px);
+  letter-spacing:-2px;
+}
+
+.portfolio-head p{
+  max-width:330px;
+  color:var(--dim);
+  font-size:14px;
+  line-height:1.6;
+}
+
+
+/* =========================================================
+   STAGE 3D — ÓRBITA
+   -----------------------------------------------------------
+   Os projetos são posicionados em círculo no eixo X/Z
+   (seno/cosseno, calculado no JS). O projeto da frente
+   fica em z=0 (mais perto da câmera); os demais recuam
+   em profundidade real ao redor dele. A leve inclinação
+   fixa do grupo (.stage-scene) dá o efeito de câmera um
+   pouco acima, sem ficar perfeitamente vista de cima.
+========================================================= */
+
+.stage{
+  position:relative;
+
+  height:480px;
+
+  perspective:1800px;
+  perspective-origin:50% 32%;
+
+  transform-style:preserve-3d;
+
+  touch-action:none;
+  user-select:none;
+
+  cursor:grab;
+
+  overflow:visible;
+}
+
+.stage:active{
+  cursor:grabbing;
+}
+
+.stage-scene{
+  position:absolute;
+  inset:0;
+
+  transform-style:preserve-3d;
+  transform:rotateX(10deg);
+}
+
+
+/* =========================================================
+   CARD 3D
+   -----------------------------------------------------------
+   Sem glassmorphism: a própria screenshot do site, com
+   borda e sombra discretas. Nitidez, brilho e desfoque
+   variam por JS conforme a distância na órbita.
+========================================================= */
+
+.card3d{
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:min(50vw,460px);
+  aspect-ratio:16/9;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  transform-style:preserve-3d;
+
+  border:1px solid rgba(255,255,255,.14);
+
+  box-shadow:0 30px 70px rgba(0,0,0,.55);
+
+  will-change:transform,opacity,filter;
+}
+
+.card3d .thumb{
+  position:absolute;
+  inset:0;
+}
+
+.card3d .thumb img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+
+/*
+  Legenda do projeto centralizado — fica FORA dos
+  cards, abaixo da órbita, para não poluir as telas.
+*/
+
+.stage-caption{
+  margin-top:26px;
+
+  text-align:center;
+}
+
+.stage-caption .cap-name{
+  font-family:var(--display);
+  font-size:19px;
+  color:var(--ink);
+}
+
+.stage-caption .cap-cat{
+  display:block;
+
+  margin-top:5px;
+
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  color:var(--faint);
+}
+
+
+.stage-hint{
+  margin-top:14px;
+
+  text-align:center;
+
+  color:var(--faint);
+
+  font-size:10px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   MOBILE PORTFÓLIO
+========================================================= */
+
+@media(max-width:720px){
+
+  #portfolio{
+    width: 100%;
+    max-width: 100%;
+    padding-left:0;
+    padding-right:0;
+    overflow:hidden;
+  }
+
+  #portfolio .wrap{
+    width: 100%;
+    max-width:none;
+  }
+
+  .portfolio-head{
+    padding:0 20px;
+
+    display:block;
+
+    margin-bottom:35px;
+  }
+
+  .portfolio-head h2{
+    font-size:37px;
+  }
+
+  .portfolio-head p{
+    margin-top:14px;
+    font-size:13px;
+  }
+
+  .stage{
+    height:360px;
+    perspective:1300px;
+    perspective-origin:50% 34%;
+  }
+
+  .stage-scene{
+    transform:rotateX(7deg);
+  }
+
+  .card3d{
+    width:min(72vw,340px);
+
+    aspect-ratio:16/9;
+
+    border-radius:12px;
+  }
+
+  .stage-caption .cap-name{
+    font-size:16px;
+  }
+
+}
+
+
+@media(max-width:420px){
+
+  .stage{
+    height:330px;
+  }
+
+  .card3d{
+    width:74vw;
+  }
+
+}
+
+
+/* =========================================================
+   6. SERVIÇOS
+========================================================= */
+
+.services{
+  background:var(--bg-soft);
+  border-top:1px solid var(--line);
+}
+
+.services h2{
+  font-size:clamp(35px,5vw,52px);
+  margin-bottom:50px;
+}
+
+.service-list{
+  border-top:1px solid var(--line);
+}
+
+.service-row{
+  display:grid;
+
+  grid-template-columns:.4fr 1fr 1.3fr;
+
+  gap:25px;
+
+  padding:30px 0;
+
+  border-bottom:1px solid var(--line);
+}
+
+.num{
+  color:var(--faint);
+  font-size:13px;
+}
+
+.service-row h3{
+  font-size:21px;
+}
+
+.service-row p{
+  color:var(--dim);
+  font-size:14px;
+  line-height:1.6;
+}
+
+@media(max-width:720px){
+
+  .service-row{
+    grid-template-columns:40px 1fr;
+
+    gap:12px;
+  }
+
+  .service-row p{
+    grid-column:2;
+  }
+
+}
+
+
+/* =========================================================
+   7. SOBRE
+========================================================= */
+
+.about{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:70px;
+}
+
+.about h2{
+  font-size:clamp(34px,5vw,52px);
+  max-width:500px;
+}
+
+.about-copy p{
+  color:var(--dim);
+  line-height:1.8;
+  font-size:15px;
+  margin-bottom:18px;
+  max-width:500px;
+}
+
+.about-stats{
+  display:flex;
+  gap:50px;
+  margin-top:35px;
+}
+
+.stat b{
+  display:block;
+  font-family:var(--display);
+  font-size:32px;
+}
+
+.stat span{
+  color:var(--faint);
+  font-size:11px;
+}
+
+@media(max-width:720px){
+
+  .about{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+}
+
+
+/* =========================================================
+   8. CONTATO
+========================================================= */
+
+.contact{
+  background:var(--bg-soft);
+  border-top:1px solid var(--line);
+}
+
+.contact h2{
+  max-width:800px;
+
+  font-size:clamp(40px,6vw,65px);
+
+  letter-spacing:-3px;
+}
+
+.contact p{
+  color:var(--dim);
+
+  max-width:500px;
+
+  margin-top:20px;
+
+  line-height:1.7;
+}
+
+.contact-actions{
+  display:flex;
+
+  gap:12px;
+
+  margin-top:35px;
+}
+
+@media(max-width:520px){
+
+  .contact-actions{
+    flex-direction:column;
+  }
+
+  .contact-actions .btn{
+    width:100%;
+  }
+
+}
+
+
+/* =========================================================
+   9. FOOTER
+========================================================= */
+
+footer{
+  padding:30px var(--gutter);
+
+  border-top:1px solid var(--line);
+
+  display:flex;
+
+  justify-content:space-between;
+
+  color:var(--faint);
+
+  font-size:11px;
+}
+
+.footer-nav{
+  display:flex;
+  gap:20px;
+}
+
+@media(max-width:520px){
+
+  footer{
+    flex-direction:column;
+    gap:15px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+  }
+
+}
